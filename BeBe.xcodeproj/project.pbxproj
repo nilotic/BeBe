@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B74B853D2610492400C196A0 /* HomeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B853C2610492400C196A0 /* HomeData.swift */; };
+		B74B853E2610492400C196A0 /* HomeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B853C2610492400C196A0 /* HomeData.swift */; };
+		B74B853F2610492400C196A0 /* HomeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B853C2610492400C196A0 /* HomeData.swift */; };
+		B7CA67BC2610489200F86C5B /* BabySoundClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B7CA67BB2610489200F86C5B /* BabySoundClassifier.mlmodel */; };
+		B7CA67BD2610489200F86C5B /* BabySoundClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B7CA67BB2610489200F86C5B /* BabySoundClassifier.mlmodel */; };
+		B7CA67BE2610489200F86C5B /* BabySoundClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B7CA67BB2610489200F86C5B /* BabySoundClassifier.mlmodel */; };
 		B7F1A047261021D400845D4E /* BeBeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F1A046261021D400845D4E /* BeBeApp.swift */; };
-		B7F1A049261021D400845D4E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F1A048261021D400845D4E /* ContentView.swift */; };
+		B7F1A049261021D400845D4E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F1A048261021D400845D4E /* HomeView.swift */; };
 		B7F1A04B261021D400845D4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7F1A04A261021D400845D4E /* Assets.xcassets */; };
 		B7F1A04E261021D400845D4E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7F1A04D261021D400845D4E /* Preview Assets.xcassets */; };
 		B7F1A059261021D400845D4E /* BeBeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F1A058261021D400845D4E /* BeBeTests.swift */; };
@@ -33,9 +39,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B74B853C2610492400C196A0 /* HomeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeData.swift; sourceTree = "<group>"; };
+		B7CA67BB2610489200F86C5B /* BabySoundClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = BabySoundClassifier.mlmodel; path = MachineLearning/BabySoundClassifier.mlmodel; sourceTree = SOURCE_ROOT; };
 		B7F1A043261021D400845D4E /* BeBe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeBe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7F1A046261021D400845D4E /* BeBeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeBeApp.swift; sourceTree = "<group>"; };
-		B7F1A048261021D400845D4E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B7F1A048261021D400845D4E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B7F1A04A261021D400845D4E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B7F1A04D261021D400845D4E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B7F1A04F261021D400845D4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,6 +80,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B7CA67B62610484E00F86C5B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B7F1A048261021D400845D4E /* HomeView.swift */,
+				B74B853C2610492400C196A0 /* HomeData.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B7CA67BA2610486700F86C5B /* MLModel */ = {
+			isa = PBXGroup;
+			children = (
+				B7CA67BB2610489200F86C5B /* BabySoundClassifier.mlmodel */,
+			);
+			path = MLModel;
+			sourceTree = "<group>";
+		};
 		B7F1A03A261021D400845D4E = {
 			isa = PBXGroup;
 			children = (
@@ -96,7 +121,8 @@
 			isa = PBXGroup;
 			children = (
 				B7F1A046261021D400845D4E /* BeBeApp.swift */,
-				B7F1A048261021D400845D4E /* ContentView.swift */,
+				B7CA67B62610484E00F86C5B /* Home */,
+				B7CA67BA2610486700F86C5B /* MLModel */,
 				B7F1A04A261021D400845D4E /* Assets.xcassets */,
 				B7F1A04F261021D400845D4E /* Info.plist */,
 				B7F1A04C261021D400845D4E /* Preview Content */,
@@ -259,7 +285,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7F1A049261021D400845D4E /* ContentView.swift in Sources */,
+				B74B853D2610492400C196A0 /* HomeData.swift in Sources */,
+				B7F1A049261021D400845D4E /* HomeView.swift in Sources */,
+				B7CA67BC2610489200F86C5B /* BabySoundClassifier.mlmodel in Sources */,
 				B7F1A047261021D400845D4E /* BeBeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,6 +297,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7F1A059261021D400845D4E /* BeBeTests.swift in Sources */,
+				B7CA67BD2610489200F86C5B /* BabySoundClassifier.mlmodel in Sources */,
+				B74B853E2610492400C196A0 /* HomeData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +307,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7F1A064261021D400845D4E /* BeBeUITests.swift in Sources */,
+				B7CA67BE2610489200F86C5B /* BabySoundClassifier.mlmodel in Sources */,
+				B74B853F2610492400C196A0 /* HomeData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

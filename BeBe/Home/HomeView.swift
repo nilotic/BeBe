@@ -1,13 +1,13 @@
 //
-//  ContentView.swift
-//  BeBe
+//  HomeView.swift
 //
 //  Created by Den Jo on 2021/03/28.
+//  Copyright © nilotic. All rights reserved.
 //
 
 import SwiftUI
 
-struct ContentView: View {
+struct HomeView: View {
     
     // MARK: - View
     // MARK: Public
@@ -21,7 +21,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
         
     static var previews: some View {
-        let view = ContentView()
+        let view = HomeView()
         
         Group {
             view
