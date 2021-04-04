@@ -29,8 +29,6 @@ struct WaveView: View {
                         .padding(.leading, CGFloat(i - data.waves.count / 2)  * 20)
                         .animation(Animation.easeInOut(duration: 0.78).delay(Double.random(in: 0...0.3)).repeatForever())
                 }
-                .frame(height: 350)
-                .border(Color.gray)
                 .drawingGroup()
             }
             .onAppear {

@@ -9,12 +9,48 @@ import SwiftUI
 
 struct HomeView: View {
     
+    // MARK: - Value
+    // MARK: Public
+    @ObservedObject var data = HomeData()
+    
+    
     // MARK: - View
     // MARK: Public
     var body: some View {
-        GeometryReader { proxy in
-            WaveView()
-                .frame(width: proxy.size.width, height: proxy.size.height - 100)
+        VStack {
+            HStack {
+                WaveView()
+                    .frame(height: 100)
+            }
+            .frame(maxHeight: .infinity)
+        
+            recordButton
+        }
+        .padding(.vertical, 30)
+    }
+    
+    // MARK: Private
+    private var recordButton: some View {
+        Button(action: { data.requestRecord()}) {
+            switch data.isRecoding {
+            case true:
+                Image(systemName: "stop.fill")
+                    .resizable()
+                    .foregroundColor(.white)
+                    .frame(width: 36, height: 36)
+                    .padding(39)
+                    .background(Color(#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)))
+                    .cornerRadius(66)
+                
+            case false:
+                Image(systemName: "mic")
+                    .resizable()
+                    .foregroundColor(.white)
+                    .frame(width: 36, height: 54)
+                    .padding(EdgeInsets(top: 30, leading: 40, bottom: 30, trailing: 40))
+                    .background(Color(#colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)))
+                    .cornerRadius(66)
+            }
         }
     }
 }
