@@ -12,8 +12,10 @@ struct HomeView: View {
     // MARK: - View
     // MARK: Public
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        GeometryReader { proxy in
+            WaveView()
+                .frame(width: proxy.size.width, height: proxy.size.height - 100)
+        }
     }
 }
 

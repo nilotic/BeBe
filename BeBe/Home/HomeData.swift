@@ -5,4 +5,11 @@
 //  Copyright © nilotic. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
+
+final class HomeData: ObservableObject {
+    
+    // MARK: - Value
+    // MARK: Public
+    
+}
