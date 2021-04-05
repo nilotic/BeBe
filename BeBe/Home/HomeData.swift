@@ -13,11 +13,60 @@ final class HomeData: NSObject, ObservableObject {
     // MARK: - Value
     // MARK: Public
     @Published var isRecoding = false
+    @Published var isPermissionAlertPresented = false
+    
+    @Published private(set) var alert: Alert? = nil {
+        didSet {
+            guard alert != nil else { return}
+            isPermissionAlertPresented = true
+        }
+    }
+    
+    // MARK: Private
+    private let captureSession = AVCaptureSession()
+    private let audioOutput = AVCaptureAudioDataOutput()
+    private let captureQueue = DispatchQueue(label: "captureQueue", qos: .userInitiated, attributes: [], autoreleaseFrequency: .workItem)
+    private let sessionQueue = DispatchQueue(label: "sessionQueue", attributes: [], autoreleaseFrequency: .workItem)
     
     
     // MARK: - Function
     // MARK: Public
-    func requestRecord() {
+    func requestAnalyze() {
+        switch AVCaptureDevice.authorizationStatus(for: .audio) {
+        case .authorized:
+            guard analyze() else {
+                alert = Alert(title: Text("Error"), message: Text("Failed to analyze a voice."), dismissButton: .default(Text("OK")))
+                return
+            }
+        
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .audio) { isGranted in
+                guard isGranted else {
+                    log(.error, "Failed to get the audio permission.")
+                    return
+                }
+                
+                guard self.analyze() else {
+                    self.alert = Alert(title: Text("Error"), message: Text("Failed to analyze a voice."), dismissButton: .default(Text("OK")))
+                    return
+                }
+            }
+        
+        case .denied, .restricted:
+            var primaryButton: Alert.Button {
+                Alert.Button.default(Text("Settings")) {
+                    guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+                    UIApplication.shared.open(url)
+                }
+            }
+            
+            alert = Alert(title: Text("Error"), message: Text("Turn on microphone to allow the app to analyze a voice."), primaryButton: primaryButton, secondaryButton: .cancel())
+            
+        default:
+            break
+        }
+        
+        /*
         let session = AVAudioSession.sharedInstance()
         
         do {
@@ -35,11 +84,16 @@ final class HomeData: NSObject, ObservableObject {
     
         } catch {
             log(.error, error.localizedDescription)
-        }
+        }*/
     }
     
     // MARK: Private
-    private func record() {
+    private func analyze() -> Bool {
+        guard setCaptureSession() else { return false }
+        
+        
+        
+        /*
         guard let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             log(.error, "Failed to get a file path")
             return
@@ -59,7 +113,39 @@ final class HomeData: NSObject, ObservableObject {
             
         } catch {
             log(.error, error.localizedDescription)
+        }*/
+        
+        return true
+    }
+    
+    private func setCaptureSession() -> Bool {
+        captureSession.beginConfiguration()
+        
+        guard captureSession.canAddOutput(audioOutput) else {
+            log(.error, "Failed to add the audio output")
+            return false
         }
+        
+        guard let device = AVCaptureDevice.default(.builtInMicrophone, for: .audio, position: .unspecified) else {
+            log(.error, "Failed to get a microphone.")
+            return false
+        }
+        
+        do {
+            let input = try AVCaptureDeviceInput(device: device)
+            guard captureSession.canAddInput(input) else {
+                log(.error, "Failed to add a input.")
+                return false
+            }
+            
+            captureSession.commitConfiguration()
+            
+        } catch {
+            log(.error, error.localizedDescription)
+            return false
+        }
+        
+        return true
     }
 }
 

@@ -27,11 +27,14 @@ struct HomeView: View {
             recordButton
         }
         .padding(.vertical, 30)
+        .alert(isPresented: $data.isPermissionAlertPresented) {
+            data.alert ?? Alert(title: Text(""))
+        }
     }
     
     // MARK: Private
     private var recordButton: some View {
-        Button(action: { data.requestRecord()}) {
+        Button(action: { data.requestAnalyze()}) {
             switch data.isRecoding {
             case true:
                 Image(systemName: "stop.fill")
