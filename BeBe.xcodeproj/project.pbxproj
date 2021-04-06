@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B74990A7261C698000F1D598 /* BabySoundType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74990A6261C698000F1D598 /* BabySoundType.swift */; };
+		B74990A8261C698000F1D598 /* BabySoundType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74990A6261C698000F1D598 /* BabySoundType.swift */; };
+		B74990A9261C698000F1D598 /* BabySoundType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74990A6261C698000F1D598 /* BabySoundType.swift */; };
 		B74B853D2610492400C196A0 /* HomeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B853C2610492400C196A0 /* HomeData.swift */; };
 		B74B853E2610492400C196A0 /* HomeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B853C2610492400C196A0 /* HomeData.swift */; };
 		B74B853F2610492400C196A0 /* HomeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B853C2610492400C196A0 /* HomeData.swift */; };
@@ -59,6 +62,7 @@
 
 /* Begin PBXFileReference section */
 		B749909D261C543000F1D598 /* SoundAnalysis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoundAnalysis.framework; path = System/Library/Frameworks/SoundAnalysis.framework; sourceTree = SDKROOT; };
+		B74990A6261C698000F1D598 /* BabySoundType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabySoundType.swift; sourceTree = "<group>"; };
 		B74B853C2610492400C196A0 /* HomeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeData.swift; sourceTree = "<group>"; };
 		B7607438261C0DE200AA3A6F /* WaveData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveData.swift; sourceTree = "<group>"; };
 		B760743A261C0DE200AA3A6F /* Curve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Curve.swift; sourceTree = "<group>"; };
@@ -113,6 +117,13 @@
 				B749909D261C543000F1D598 /* SoundAnalysis.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B74990A5261C694A00F1D598 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B7607437261C0DE200AA3A6F /* Wave */ = {
@@ -173,6 +184,7 @@
 			children = (
 				B7F1A048261021D400845D4E /* HomeView.swift */,
 				B74B853C2610492400C196A0 /* HomeData.swift */,
+				B74990A5261C694A00F1D598 /* Model */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -181,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				B7CA67BB2610489200F86C5B /* BabySoundClassifier.mlmodel */,
+				B74990A6261C698000F1D598 /* BabySoundType.swift */,
 			);
 			path = MLModel;
 			sourceTree = "<group>";
@@ -387,6 +400,7 @@
 				B7A694542613130E004AE108 /* LogType.swift in Sources */,
 				B760743F261C0DE200AA3A6F /* WaveData.swift in Sources */,
 				B7F1A047261021D400845D4E /* BeBeApp.swift in Sources */,
+				B74990A7261C698000F1D598 /* BabySoundType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +413,7 @@
 				B7607440261C0DE200AA3A6F /* WaveData.swift in Sources */,
 				B7F1A059261021D400845D4E /* BeBeTests.swift in Sources */,
 				B7CA67BD2610489200F86C5B /* BabySoundClassifier.mlmodel in Sources */,
+				B74990A8261C698000F1D598 /* BabySoundType.swift in Sources */,
 				B74B853E2610492400C196A0 /* HomeData.swift in Sources */,
 				B7A694522613130E004AE108 /* Logger.swift in Sources */,
 				B7A694552613130E004AE108 /* LogType.swift in Sources */,
@@ -419,6 +434,7 @@
 				B7A694532613130E004AE108 /* Logger.swift in Sources */,
 				B760744A261C0DE200AA3A6F /* WaveView.swift in Sources */,
 				B74B853F2610492400C196A0 /* HomeData.swift in Sources */,
+				B74990A9261C698000F1D598 /* BabySoundType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

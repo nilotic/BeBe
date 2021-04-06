@@ -16,6 +16,7 @@ final class HomeData: NSObject, ObservableObject {
     @Published var isAnalyzing = false
     @Published var isPermissionAlertPresented = false
     @Published var power: CGFloat = 0
+    @Published var soundType: BabySoundType = .none
     
     @Published private(set) var alert: Alert? = nil {
         didSet {
@@ -183,15 +184,11 @@ extension HomeData: SNResultsObserving {
             return
         }
         
-        // Determine the time of this result.
-        let formattedTime = String(format: "%.2f", result.timeRange.start.seconds)
-        log(.info, "Analysis result for audio at time: \(formattedTime)")
+        log(.info, "Analysis result for audio at time: \(String(format: "%.2f", result.timeRange.start.seconds))\n \(classification.identifier): \(String(format: "%.2f%%", classification.confidence * 100)) confidence.\n")
         
-        let confidence = classification.confidence * 100.0
-        let percent = String(format: "%.2f%%", confidence)
-        
-        // Print the result as Instrument: percentage confidence.
-        log(.info, "\(classification.identifier): \(percent) confidence.\n")
+        DispatchQueue.main.async {
+            self.soundType = BabySoundType(string: classification.identifier)
+        }
     }
     
     func request(_ request: SNRequest, didFailWithError error: Error) {

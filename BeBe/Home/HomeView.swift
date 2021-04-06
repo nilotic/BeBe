@@ -19,19 +19,11 @@ struct HomeView: View {
     // MARK: Public
     var body: some View {
         VStack {
-            VStack(spacing: 0) {
-                WaveView(data: $power)
-                    .frame(height: 150)
-                
-                if data.isAnalyzing {
-                    Text("Anayzing...")
-                }
-            }
-            .frame(maxHeight: .infinity)
-        
+            analysisView
+            siriWave
             recordButton
         }
-        .padding(.vertical, 30)
+        .padding(EdgeInsets(top: 80, leading: 0, bottom: 30, trailing: 0))
         .alert(isPresented: $data.isPermissionAlertPresented) {
             data.alert ?? Alert(title: Text(""))
         }
@@ -41,6 +33,31 @@ struct HomeView: View {
     }
     
     // MARK: Private
+    private var analysisView: some View {
+        VStack(spacing: 20) {
+            Image(uiImage: data.soundType.image)
+                .resizable()
+                .frame(width: 150, height: 150)
+                .cornerRadius(30)
+        
+            Text(data.soundType.localizedStringKey)
+                .font(.title)
+        }
+        .animation(.easeInOut)
+    }
+    
+    private var siriWave: some View {
+        VStack(spacing: 0) {
+            WaveView(data: $power)
+                .frame(height: 150)
+            
+            if data.isAnalyzing {
+                Text("Anayzing...")
+            }
+        }
+        .frame(maxHeight: .infinity)
+    }
+    
     private var recordButton: some View {
         Button(action: {
             switch data.isAnalyzing {
