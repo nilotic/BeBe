@@ -40,20 +40,20 @@ struct WaveView: View {
 }
 
 #if DEBUG
-//struct WaveView_Previews: PreviewProvider {
-//    
-//    static var previews: some View {
-//        let view = WaveView(data: .constant(0.5))
-//        
-//        Group {
-//            view
-//                .previewDevice("iPhone 8")
-//                .preferredColorScheme(.light)
-//            
-//            view
-//                .previewDevice("iPhone 12")
-//                .preferredColorScheme(.dark)
-//        }
-//    }
-//}
+struct WaveView_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        let view = WaveView(data: .constant(0.5))
+        
+        Group {
+            view
+                .previewDevice("iPhone 8")
+                .preferredColorScheme(.light)
+            
+            view
+                .previewDevice("iPhone 12")
+                .preferredColorScheme(.dark)
+        }
+    }
+}
 #endif

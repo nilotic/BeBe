@@ -99,7 +99,11 @@ final class HomeData: NSObject, ObservableObject {
             timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { timer in
                 self.audioRecorder?.updateMeters()
                 
-                let power = min((abs(CGFloat(self.audioRecorder?.averagePower(forChannel: 0) ?? 0)) / 160) * 2, 1)
+                let threshold: CGFloat = 0.27
+                var power = (CGFloat(self.audioRecorder?.peakPower(forChannel: 0) ?? 0) + 80) / 160
+                power = max(power - threshold, 0)
+                power = 0 < power ? power + threshold : power
+                
                 self.power = self.power != 0 ? 0 : power
             }
             
