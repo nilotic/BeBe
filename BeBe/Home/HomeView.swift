@@ -11,7 +11,8 @@ struct HomeView: View {
     
     // MARK: - Value
     // MARK: Public
-    @ObservedObject var data = HomeData()
+    @StateObject var data = HomeData()
+    @State var power: CGFloat = 0
     
     
     // MARK: - View
@@ -19,8 +20,8 @@ struct HomeView: View {
     var body: some View {
         VStack {
             HStack {
-                WaveView()
-                    .frame(height: 100)
+                WaveView(data: $power)
+                    .frame(height: 150)
             }
             .frame(maxHeight: .infinity)
         
@@ -30,11 +31,20 @@ struct HomeView: View {
         .alert(isPresented: $data.isPermissionAlertPresented) {
             data.alert ?? Alert(title: Text(""))
         }
+        .onChange(of: data.power) {
+            power = $0
+        }
     }
     
     // MARK: Private
     private var recordButton: some View {
-        Button(action: { data.requestAnalyze()}) {
+        Button(action: {
+            switch data.isRecoding {
+            case true:      data.stopAnalyze()
+            case false:     data.requestAnalyze()
+            }
+            
+        }) {
             switch data.isRecoding {
             case true:
                 Image(systemName: "stop.fill")
