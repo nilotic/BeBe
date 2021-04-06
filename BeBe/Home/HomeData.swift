@@ -7,12 +7,13 @@
 
 import SwiftUI
 import AVFoundation
+import SoundAnalysis
 
 final class HomeData: NSObject, ObservableObject {
     
     // MARK: - Value
     // MARK: Public
-    @Published var isRecoding = false
+    @Published var isAnalyzing = false
     @Published var isPermissionAlertPresented = false
     @Published var power: CGFloat = 0
     
@@ -25,6 +26,29 @@ final class HomeData: NSObject, ObservableObject {
     
     // MARK: Private
     private var timer: Timer? = nil
+
+    private let inputBus      = AVAudioNodeBus(0)
+    private var inputFormat   = AVAudioFormat()
+    private let analysisQueue = DispatchQueue(label: "analysisQueue")
+
+    private lazy var audioEngine: AVAudioEngine = {
+        let audioEngine = AVAudioEngine()
+        inputFormat = audioEngine.inputNode.inputFormat(forBus: inputBus)
+       
+        return audioEngine
+    }()
+    
+    private lazy var streamAnalyzer: SNAudioStreamAnalyzer = {
+        let streamAnalyzer = SNAudioStreamAnalyzer(format: inputFormat)
+    
+        audioEngine.inputNode.installTap(onBus: inputBus, bufferSize: 8192, format: inputFormat) { buffer, time in
+            self.analysisQueue.async {
+                streamAnalyzer.analyze(buffer, atAudioFramePosition: time.sampleTime)
+            }
+        }
+        
+        return streamAnalyzer
+    }()
     
     private lazy var audioRecorder: AVAudioRecorder? = {
         guard let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
@@ -44,7 +68,7 @@ final class HomeData: NSObject, ObservableObject {
         audioRecorder?.delegate = self
         return audioRecorder
     }()
-  
+    
     
     // MARK: - Function
     // MARK: Public
@@ -93,7 +117,7 @@ final class HomeData: NSObject, ObservableObject {
     private func startRecord() -> Bool {
         do {
             try AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .default, options: [])
-            DispatchQueue.main.async { self.isRecoding = true }
+            DispatchQueue.main.async { self.isAnalyzing = true }
                         
             audioRecorder?.record()
             timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { timer in
@@ -107,6 +131,7 @@ final class HomeData: NSObject, ObservableObject {
                 self.power = self.power != 0 ? 0 : power
             }
             
+            startAudioEngine()
             return true
             
         } catch {
@@ -119,7 +144,19 @@ final class HomeData: NSObject, ObservableObject {
         timer?.invalidate()
         audioRecorder?.stop()
         power = 0
-        isRecoding = false
+        isAnalyzing = false
+    }
+    
+    private func startAudioEngine() {
+        do {
+            try audioEngine.start()
+            
+            let request = try SNClassifySoundRequest(mlModel: BabySoundClassifier(configuration: MLModelConfiguration()).model)
+            try streamAnalyzer.add(request, withObserver: self)
+            
+        } catch {
+            log(.error, error.localizedDescription)
+        }
     }
 }
 
@@ -134,5 +171,34 @@ extension HomeData: AVAudioRecorderDelegate {
     func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
         log(.error, error?.localizedDescription)
         recorder.stop()
+    }
+}
+
+// MARK: - SNResults Observing
+extension HomeData: SNResultsObserving {
+    
+    func request(_ request: SNRequest, didProduce result: SNResult) {
+        guard let result = result as? SNClassificationResult, let classification = result.classifications.first else {
+            log(.error, "Failed to analyze sounds")
+            return
+        }
+        
+        // Determine the time of this result.
+        let formattedTime = String(format: "%.2f", result.timeRange.start.seconds)
+        log(.info, "Analysis result for audio at time: \(formattedTime)")
+        
+        let confidence = classification.confidence * 100.0
+        let percent = String(format: "%.2f%%", confidence)
+        
+        // Print the result as Instrument: percentage confidence.
+        log(.info, "\(classification.identifier): \(percent) confidence.\n")
+    }
+    
+    func request(_ request: SNRequest, didFailWithError error: Error) {
+        log(.error, "The the analysis failed: \(error.localizedDescription)")
+    }
+    
+    func requestDidComplete(_ request: SNRequest) {
+        log(.error, "The request completed successfully!")
     }
 }

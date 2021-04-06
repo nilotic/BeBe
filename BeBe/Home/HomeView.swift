@@ -19,9 +19,13 @@ struct HomeView: View {
     // MARK: Public
     var body: some View {
         VStack {
-            HStack {
+            VStack(spacing: 0) {
                 WaveView(data: $power)
                     .frame(height: 150)
+                
+                if data.isAnalyzing {
+                    Text("Anayzing...")
+                }
             }
             .frame(maxHeight: .infinity)
         
@@ -39,13 +43,13 @@ struct HomeView: View {
     // MARK: Private
     private var recordButton: some View {
         Button(action: {
-            switch data.isRecoding {
+            switch data.isAnalyzing {
             case true:      data.stopAnalyze()
             case false:     data.requestAnalyze()
             }
             
         }) {
-            switch data.isRecoding {
+            switch data.isAnalyzing {
             case true:
                 Image(systemName: "stop.fill")
                     .resizable()
