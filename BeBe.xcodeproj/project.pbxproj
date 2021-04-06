@@ -58,6 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B749909D261C543000F1D598 /* SoundAnalysis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoundAnalysis.framework; path = System/Library/Frameworks/SoundAnalysis.framework; sourceTree = SDKROOT; };
 		B74B853C2610492400C196A0 /* HomeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeData.swift; sourceTree = "<group>"; };
 		B7607438261C0DE200AA3A6F /* WaveData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveData.swift; sourceTree = "<group>"; };
 		B760743A261C0DE200AA3A6F /* Curve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Curve.swift; sourceTree = "<group>"; };
@@ -106,6 +107,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B749909C261C543000F1D598 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B749909D261C543000F1D598 /* SoundAnalysis.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B7607437261C0DE200AA3A6F /* Wave */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +192,7 @@
 				B7F1A057261021D400845D4E /* BeBeTests */,
 				B7F1A062261021D400845D4E /* BeBeUITests */,
 				B7F1A044261021D400845D4E /* Products */,
+				B749909C261C543000F1D598 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
