@@ -24,7 +24,7 @@ struct TabbarView: View {
                 }
                 .tag(TabbarType.analysis)
             
-            AnalysisView()
+            RecordView()
                 .tabItem {
                     TabbarItem(type: .record, selection: $selection)
                 }

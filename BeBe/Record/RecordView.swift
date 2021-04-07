@@ -1,17 +1,17 @@
+// 
+//  RecordView.swift
 //
-//  AnalysisView.swift
-//
-//  Created by Den Jo on 2021/03/28.
+//  Created by Den Jo on 2021/04/07.
 //  Copyright © nilotic. All rights reserved.
 //
 
 import SwiftUI
 
-struct AnalysisView: View {
+struct RecordView: View {
     
     // MARK: - Value
     // MARK: Public
-    @StateObject var data = AnalysisData()
+    @StateObject var data = RecordData()
     @State var power: CGFloat = 0
     
     
@@ -68,32 +68,28 @@ struct AnalysisView: View {
         }) {
             switch data.isAnalyzing {
             case true:
-                Image(systemName: "stop.fill")
-                    .resizable()
-                    .foregroundColor(.white)
-                    .frame(width: 36, height: 36)
-                    .padding(39)
-                    .background(Color(#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)))
-                    .cornerRadius(66)
+                Color(#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1))
+                    .frame(width: 38, height: 38)
+                    .cornerRadius(6)
+                    .padding(34)
+                    .overlay(Circle().stroke(Color(#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)), lineWidth: 8))
                 
             case false:
-                Image(systemName: "mic")
-                    .resizable()
-                    .foregroundColor(.white)
-                    .frame(width: 36, height: 54)
-                    .padding(EdgeInsets(top: 30, leading: 40, bottom: 30, trailing: 40))
-                    .background(Color(#colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)))
-                    .cornerRadius(66)
+                Circle()
+                    .frame(width: 42, height: 42)
+                    .foregroundColor(Color(#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)))
+                    .padding(32)
+                    .overlay(Circle().stroke(Color("border"), lineWidth: 8))
             }
         }
     }
 }
 
 #if DEBUG
-struct AnalysisView_Previews: PreviewProvider {
+struct RecordView_Previews: PreviewProvider {
         
     static var previews: some View {
-        let view = AnalysisView()
+        let view = RecordView()
         
         Group {
             view

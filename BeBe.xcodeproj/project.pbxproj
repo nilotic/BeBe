@@ -13,6 +13,11 @@
 		B74B853D2610492400C196A0 /* AnalysisData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B853C2610492400C196A0 /* AnalysisData.swift */; };
 		B74B853E2610492400C196A0 /* AnalysisData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B853C2610492400C196A0 /* AnalysisData.swift */; };
 		B74B853F2610492400C196A0 /* AnalysisData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B853C2610492400C196A0 /* AnalysisData.swift */; };
+		B758EB49261DABEA0076ABF2 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B758EB48261DABEA0076ABF2 /* RecordView.swift */; };
+		B758EB4A261DABEA0076ABF2 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B758EB48261DABEA0076ABF2 /* RecordView.swift */; };
+		B758EB52261DB32C0076ABF2 /* RecordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B758EB51261DB32C0076ABF2 /* RecordData.swift */; };
+		B758EB53261DB32C0076ABF2 /* RecordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B758EB51261DB32C0076ABF2 /* RecordData.swift */; };
+		B758EB54261DB32C0076ABF2 /* RecordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B758EB51261DB32C0076ABF2 /* RecordData.swift */; };
 		B760743F261C0DE200AA3A6F /* WaveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7607438261C0DE200AA3A6F /* WaveData.swift */; };
 		B7607440261C0DE200AA3A6F /* WaveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7607438261C0DE200AA3A6F /* WaveData.swift */; };
 		B7607441261C0DE200AA3A6F /* WaveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7607438261C0DE200AA3A6F /* WaveData.swift */; };
@@ -68,6 +73,8 @@
 		B749909D261C543000F1D598 /* SoundAnalysis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoundAnalysis.framework; path = System/Library/Frameworks/SoundAnalysis.framework; sourceTree = SDKROOT; };
 		B74990A6261C698000F1D598 /* BabySoundType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabySoundType.swift; sourceTree = "<group>"; };
 		B74B853C2610492400C196A0 /* AnalysisData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisData.swift; sourceTree = "<group>"; };
+		B758EB48261DABEA0076ABF2 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
+		B758EB51261DB32C0076ABF2 /* RecordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordData.swift; sourceTree = "<group>"; };
 		B7607438261C0DE200AA3A6F /* WaveData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveData.swift; sourceTree = "<group>"; };
 		B760743A261C0DE200AA3A6F /* Curve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Curve.swift; sourceTree = "<group>"; };
 		B760743B261C0DE200AA3A6F /* Wave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wave.swift; sourceTree = "<group>"; };
@@ -131,6 +138,15 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		B758EB47261DABDA0076ABF2 /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				B758EB48261DABEA0076ABF2 /* RecordView.swift */,
+				B758EB51261DB32C0076ABF2 /* RecordData.swift */,
+			);
+			path = Record;
 			sourceTree = "<group>";
 		};
 		B7607437261C0DE200AA3A6F /* Wave */ = {
@@ -232,6 +248,7 @@
 				B7F1A046261021D400845D4E /* BeBeApp.swift */,
 				B7F1B842261D9F8700AE8736 /* Tabbar */,
 				B7CA67B62610484E00F86C5B /* Analysis */,
+				B758EB47261DABDA0076ABF2 /* Record */,
 				B7CA67BA2610486700F86C5B /* MLModel */,
 				B7835F5C2612B58E00760062 /* Component */,
 				B7A6944D261312F7004AE108 /* Util */,
@@ -427,7 +444,9 @@
 				B7607448261C0DE200AA3A6F /* WaveView.swift in Sources */,
 				B7F1A049261021D400845D4E /* AnalysisView.swift in Sources */,
 				B760744B261C0DE200AA3A6F /* WaveShape.swift in Sources */,
+				B758EB52261DB32C0076ABF2 /* RecordData.swift in Sources */,
 				B7CA67BC2610489200F86C5B /* BabySoundClassifier.mlmodel in Sources */,
+				B758EB49261DABEA0076ABF2 /* RecordView.swift in Sources */,
 				B7607445261C0DE200AA3A6F /* Wave.swift in Sources */,
 				B7607442261C0DE200AA3A6F /* Curve.swift in Sources */,
 				B7A694512613130E004AE108 /* Logger.swift in Sources */,
@@ -451,6 +470,7 @@
 				B7F1A059261021D400845D4E /* BeBeTests.swift in Sources */,
 				B7CA67BD2610489200F86C5B /* BabySoundClassifier.mlmodel in Sources */,
 				B74990A8261C698000F1D598 /* BabySoundType.swift in Sources */,
+				B758EB53261DB32C0076ABF2 /* RecordData.swift in Sources */,
 				B74B853E2610492400C196A0 /* AnalysisData.swift in Sources */,
 				B7A694522613130E004AE108 /* Logger.swift in Sources */,
 				B7A694552613130E004AE108 /* LogType.swift in Sources */,
@@ -463,11 +483,13 @@
 			files = (
 				B7607447261C0DE200AA3A6F /* Wave.swift in Sources */,
 				B7607444261C0DE200AA3A6F /* Curve.swift in Sources */,
+				B758EB54261DB32C0076ABF2 /* RecordData.swift in Sources */,
 				B7607441261C0DE200AA3A6F /* WaveData.swift in Sources */,
 				B7A694562613130E004AE108 /* LogType.swift in Sources */,
 				B7F1B85B261DA33D00AE8736 /* AnalysisView.swift in Sources */,
 				B7F1A064261021D400845D4E /* BeBeUITests.swift in Sources */,
 				B7CA67BE2610489200F86C5B /* BabySoundClassifier.mlmodel in Sources */,
+				B758EB4A261DABEA0076ABF2 /* RecordView.swift in Sources */,
 				B760744D261C0DE200AA3A6F /* WaveShape.swift in Sources */,
 				B7A694532613130E004AE108 /* Logger.swift in Sources */,
 				B760744A261C0DE200AA3A6F /* WaveView.swift in Sources */,

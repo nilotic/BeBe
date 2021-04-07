@@ -1,15 +1,17 @@
 // 
-//  AnalysisData.swift
+//  RecordData.swift
 //
-//  Created by Den Jo on 2021/03/28.
+//  Created by Den Jo on 2021/04/07.
 //  Copyright © nilotic. All rights reserved.
 //
+
+import Foundation
 
 import SwiftUI
 import AVFoundation
 import SoundAnalysis
 
-final class AnalysisData: NSObject, ObservableObject {
+final class RecordData: NSObject, ObservableObject {
     
     // MARK: - Value
     // MARK: Public
@@ -117,8 +119,6 @@ final class AnalysisData: NSObject, ObservableObject {
     
     // MARK: Private
     private func analyze() -> Bool {
-        soundType = .none
-        
         guard startRecord(), startAudioEngine() else { return false }
         
         analysisQueue.asyncAfter(deadline: .now() + 5) {
@@ -188,7 +188,7 @@ final class AnalysisData: NSObject, ObservableObject {
 
 
 // MARK: - AVAudioRecorder Delegate
-extension AnalysisData: AVAudioRecorderDelegate {
+extension RecordData: AVAudioRecorderDelegate {
 
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         recorder.stop()
@@ -202,7 +202,7 @@ extension AnalysisData: AVAudioRecorderDelegate {
 
 
 // MARK: - SNResults Observing
-extension AnalysisData: SNResultsObserving {
+extension RecordData: SNResultsObserving {
     
     func request(_ request: SNRequest, didProduce result: SNResult) {
         guard let result = result as? SNClassificationResult, let classification = result.classifications.first else {
