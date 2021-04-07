@@ -52,7 +52,7 @@ struct AnalysisView: View {
                 .frame(height: 150)
             
             if data.isAnalyzing {
-                Text("Anayzing...")
+                WaveText(text: "Anayzing...")
             }
         }
         .frame(maxHeight: .infinity)

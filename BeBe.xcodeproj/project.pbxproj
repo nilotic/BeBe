@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B7295744261DD1BD007DC14C /* WaveTextAnimatableModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7295743261DD1BD007DC14C /* WaveTextAnimatableModifier.swift */; };
+		B7295745261DD1BD007DC14C /* WaveTextAnimatableModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7295743261DD1BD007DC14C /* WaveTextAnimatableModifier.swift */; };
+		B729577D261DE837007DC14C /* WaveText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B729577C261DE837007DC14C /* WaveText.swift */; };
+		B729577E261DE837007DC14C /* WaveText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B729577C261DE837007DC14C /* WaveText.swift */; };
 		B74990A7261C698000F1D598 /* BabySoundType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74990A6261C698000F1D598 /* BabySoundType.swift */; };
 		B74990A8261C698000F1D598 /* BabySoundType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74990A6261C698000F1D598 /* BabySoundType.swift */; };
 		B74990A9261C698000F1D598 /* BabySoundType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74990A6261C698000F1D598 /* BabySoundType.swift */; };
@@ -62,6 +66,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B7295743261DD1BD007DC14C /* WaveTextAnimatableModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveTextAnimatableModifier.swift; sourceTree = "<group>"; };
+		B729577C261DE837007DC14C /* WaveText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveText.swift; sourceTree = "<group>"; };
 		B749909D261C543000F1D598 /* SoundAnalysis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoundAnalysis.framework; path = System/Library/Frameworks/SoundAnalysis.framework; sourceTree = SDKROOT; };
 		B74990A6261C698000F1D598 /* BabySoundType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabySoundType.swift; sourceTree = "<group>"; };
 		B74B853C2610492400C196A0 /* AnalysisData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisData.swift; sourceTree = "<group>"; };
@@ -112,6 +118,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B7295739261DD18A007DC14C /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				B729577C261DE837007DC14C /* WaveText.swift */,
+				B7295743261DD1BD007DC14C /* WaveTextAnimatableModifier.swift */,
+			);
+			path = Text;
+			sourceTree = "<group>";
+		};
 		B749909C261C543000F1D598 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +166,7 @@
 		B7835F5C2612B58E00760062 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				B7295739261DD18A007DC14C /* Text */,
 				B7607437261C0DE200AA3A6F /* Wave */,
 			);
 			path = Component;
@@ -388,12 +404,14 @@
 				B760744B261C0DE200AA3A6F /* WaveShape.swift in Sources */,
 				B7CA67BC2610489200F86C5B /* BabySoundClassifier.mlmodel in Sources */,
 				B7607445261C0DE200AA3A6F /* Wave.swift in Sources */,
+				B7295744261DD1BD007DC14C /* WaveTextAnimatableModifier.swift in Sources */,
 				B7607442261C0DE200AA3A6F /* Curve.swift in Sources */,
 				B7A694512613130E004AE108 /* Logger.swift in Sources */,
 				B7A694542613130E004AE108 /* LogType.swift in Sources */,
 				B760743F261C0DE200AA3A6F /* WaveData.swift in Sources */,
 				B7F1A047261021D400845D4E /* BeBeApp.swift in Sources */,
 				B74990A7261C698000F1D598 /* BabySoundType.swift in Sources */,
+				B729577D261DE837007DC14C /* WaveText.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,12 +441,14 @@
 				B7A694562613130E004AE108 /* LogType.swift in Sources */,
 				B7F1B85B261DA33D00AE8736 /* AnalysisView.swift in Sources */,
 				B7F1A064261021D400845D4E /* BeBeUITests.swift in Sources */,
+				B7295745261DD1BD007DC14C /* WaveTextAnimatableModifier.swift in Sources */,
 				B7CA67BE2610489200F86C5B /* BabySoundClassifier.mlmodel in Sources */,
 				B760744D261C0DE200AA3A6F /* WaveShape.swift in Sources */,
 				B7A694532613130E004AE108 /* Logger.swift in Sources */,
 				B760744A261C0DE200AA3A6F /* WaveView.swift in Sources */,
 				B74B853F2610492400C196A0 /* AnalysisData.swift in Sources */,
 				B74990A9261C698000F1D598 /* BabySoundType.swift in Sources */,
+				B729577E261DE837007DC14C /* WaveText.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
