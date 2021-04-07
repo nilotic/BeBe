@@ -1,5 +1,5 @@
 // 
-//  HomeData.swift
+//  AnalysisData.swift
 //
 //  Created by Den Jo on 2021/03/28.
 //  Copyright © nilotic. All rights reserved.
@@ -9,7 +9,7 @@ import SwiftUI
 import AVFoundation
 import SoundAnalysis
 
-final class HomeData: NSObject, ObservableObject {
+final class AnalysisData: NSObject, ObservableObject {
     
     // MARK: - Value
     // MARK: Public
@@ -187,7 +187,7 @@ final class HomeData: NSObject, ObservableObject {
 
 
 // MARK: - AVAudioRecorder Delegate
-extension HomeData: AVAudioRecorderDelegate {
+extension AnalysisData: AVAudioRecorderDelegate {
 
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         recorder.stop()
@@ -200,7 +200,7 @@ extension HomeData: AVAudioRecorderDelegate {
 }
 
 // MARK: - SNResults Observing
-extension HomeData: SNResultsObserving {
+extension AnalysisData: SNResultsObserving {
     
     func request(_ request: SNRequest, didProduce result: SNResult) {
         guard let result = result as? SNClassificationResult, let classification = result.classifications.first else {

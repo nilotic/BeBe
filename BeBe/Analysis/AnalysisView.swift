@@ -1,5 +1,5 @@
 //
-//  HomeView.swift
+//  AnalysisView.swift
 //
 //  Created by Den Jo on 2021/03/28.
 //  Copyright © nilotic. All rights reserved.
@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct AnalysisView: View {
     
     // MARK: - Value
     // MARK: Public
-    @StateObject var data = HomeData()
+    @StateObject var data = AnalysisData()
     @State var power: CGFloat = 0
     
     
@@ -93,7 +93,7 @@ struct HomeView: View {
 struct ContentView_Previews: PreviewProvider {
         
     static var previews: some View {
-        let view = HomeView()
+        let view = AnalysisView()
         
         Group {
             view
