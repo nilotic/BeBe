@@ -28,9 +28,10 @@ final class HomeData: NSObject, ObservableObject {
     // MARK: Private
     private var timer: Timer? = nil
 
-    private let inputBus      = AVAudioNodeBus(0)
-    private var inputFormat   = AVAudioFormat()
-    private let analysisQueue = DispatchQueue(label: "analysisQueue")
+    private let inputBus       = AVAudioNodeBus(0)
+    private var inputFormat    = AVAudioFormat()
+    private let analysisQueue  = DispatchQueue(label: "analysisQueue")
+    private var analysisScores = [BabySoundType: UInt]()
 
     private lazy var audioEngine: AVAudioEngine = {
         let audioEngine = AVAudioEngine()
@@ -73,10 +74,10 @@ final class HomeData: NSObject, ObservableObject {
     
     // MARK: - Function
     // MARK: Public
-    func requestAnalyze() {
+    func startAnalyze() {
         switch AVAudioSession.sharedInstance().recordPermission {
         case .granted:
-            guard startRecord() else {
+            guard analyze() else {
                 alert = Alert(title: Text("Error"), message: Text("Failed to analyze a voice."), dismissButton: .default(Text("OK")))
                 return
             }
@@ -84,11 +85,11 @@ final class HomeData: NSObject, ObservableObject {
         case .undetermined:
             AVCaptureDevice.requestAccess(for: .audio) { isGranted in
                 guard isGranted else {
-                    log(.error, "Failed to get the audio permission.")
+                    self.alert = Alert(title: Text("Error"), message: Text("Failed to analyze a voice."), dismissButton: .default(Text("OK")))
                     return
                 }
                 
-                guard self.startRecord() else {
+                guard self.analyze() else {
                     self.alert = Alert(title: Text("Error"), message: Text("Failed to analyze a voice."), dismissButton: .default(Text("OK")))
                     return
                 }
@@ -111,10 +112,26 @@ final class HomeData: NSObject, ObservableObject {
     
     func stopAnalyze() {
         stopRecord()
+        stopAudioEngine()
     }
     
     
     // MARK: Private
+    private func analyze() -> Bool {
+        guard startRecord(), startAudioEngine() else { return false }
+        
+        analysisQueue.asyncAfter(deadline: .now() + 5) {
+            let first = self.analysisScores.sorted(by: { $1.value < $0.value }).first
+            
+            DispatchQueue.main.async {
+                self.stopAnalyze()
+                self.soundType = first?.key ?? .none
+            }
+        }
+        
+        return true
+    }
+    
     private func startRecord() -> Bool {
         do {
             try AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .default, options: [])
@@ -132,7 +149,6 @@ final class HomeData: NSObject, ObservableObject {
                 self.power = self.power != 0 ? 0 : power
             }
             
-            startAudioEngine()
             return true
             
         } catch {
@@ -142,22 +158,30 @@ final class HomeData: NSObject, ObservableObject {
     }
                                      
     private func stopRecord() {
-        timer?.invalidate()
         audioRecorder?.stop()
+        timer?.invalidate()
         power = 0
-        isAnalyzing = false
     }
     
-    private func startAudioEngine() {
+    private func startAudioEngine() -> Bool {
+        analysisScores.removeAll()
+        
         do {
             try audioEngine.start()
             
             let request = try SNClassifySoundRequest(mlModel: BabySoundClassifier(configuration: MLModelConfiguration()).model)
             try streamAnalyzer.add(request, withObserver: self)
+            return true
             
         } catch {
             log(.error, error.localizedDescription)
+            return false
         }
+    }
+    
+    private func stopAudioEngine() {
+        audioEngine.stop()
+        isAnalyzing = false
     }
 }
 
@@ -184,10 +208,14 @@ extension HomeData: SNResultsObserving {
             return
         }
         
-        log(.info, "Analysis result for audio at time: \(String(format: "%.2f", result.timeRange.start.seconds))\n \(classification.identifier): \(String(format: "%.2f%%", classification.confidence * 100)) confidence.\n")
+        log(.info, "\(classification.identifier): \(String(format: "%.2f%%", classification.confidence * 100)).\n")
         
-        DispatchQueue.main.async {
-            self.soundType = BabySoundType(string: classification.identifier)
+        
+        analysisQueue.async {
+            let type  = BabySoundType(string: classification.identifier)
+            let score = self.analysisScores[type] ?? 0
+            
+            self.analysisScores[type] = score + 1
         }
     }
     

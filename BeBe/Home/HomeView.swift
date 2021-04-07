@@ -62,7 +62,7 @@ struct HomeView: View {
         Button(action: {
             switch data.isAnalyzing {
             case true:      data.stopAnalyze()
-            case false:     data.requestAnalyze()
+            case false:     data.startAnalyze()
             }
             
         }) {
