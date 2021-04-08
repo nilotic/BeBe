@@ -43,6 +43,8 @@
 		B760744A261C0DE200AA3A6F /* WaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B760743C261C0DE200AA3A6F /* WaveView.swift */; };
 		B760744B261C0DE200AA3A6F /* WaveShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = B760743E261C0DE200AA3A6F /* WaveShape.swift */; };
 		B760744D261C0DE200AA3A6F /* WaveShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = B760743E261C0DE200AA3A6F /* WaveShape.swift */; };
+		B763698F261EDEA400B0111B /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B763698E261EDEA400B0111B /* ActivityViewController.swift */; };
+		B7636990261EDEA400B0111B /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B763698E261EDEA400B0111B /* ActivityViewController.swift */; };
 		B7A694512613130E004AE108 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A6944F2613130E004AE108 /* Logger.swift */; };
 		B7A694522613130E004AE108 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A6944F2613130E004AE108 /* Logger.swift */; };
 		B7A694532613130E004AE108 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A6944F2613130E004AE108 /* Logger.swift */; };
@@ -94,6 +96,7 @@
 		B760743B261C0DE200AA3A6F /* Wave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wave.swift; sourceTree = "<group>"; };
 		B760743C261C0DE200AA3A6F /* WaveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveView.swift; sourceTree = "<group>"; };
 		B760743E261C0DE200AA3A6F /* WaveShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveShape.swift; sourceTree = "<group>"; };
+		B763698E261EDEA400B0111B /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		B7A6944F2613130E004AE108 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		B7A694502613130E004AE108 /* LogType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogType.swift; sourceTree = "<group>"; };
 		B7CA67BB2610489200F86C5B /* BabySoundClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = BabySoundClassifier.mlmodel; path = MachineLearning/BabySoundClassifier.mlmodel; sourceTree = SOURCE_ROOT; };
@@ -216,9 +219,18 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		B763698D261EDE7C00B0111B /* ActivityView */ = {
+			isa = PBXGroup;
+			children = (
+				B763698E261EDEA400B0111B /* ActivityViewController.swift */,
+			);
+			path = ActivityView;
+			sourceTree = "<group>";
+		};
 		B7835F5C2612B58E00760062 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				B763698D261EDE7C00B0111B /* ActivityView */,
 				B7295739261DD18A007DC14C /* Text */,
 				B7607437261C0DE200AA3A6F /* Wave */,
 			);
@@ -456,6 +468,7 @@
 				B74B853D2610492400C196A0 /* AnalysisData.swift in Sources */,
 				B7607448261C0DE200AA3A6F /* WaveView.swift in Sources */,
 				B74F08F4261E90AC00A58D5A /* TabbarItem.swift in Sources */,
+				B763698F261EDEA400B0111B /* ActivityViewController.swift in Sources */,
 				B7F1A049261021D400845D4E /* AnalysisView.swift in Sources */,
 				B74F08EE261E90AC00A58D5A /* TabbarView.swift in Sources */,
 				B760744B261C0DE200AA3A6F /* WaveShape.swift in Sources */,
@@ -501,6 +514,7 @@
 				B7607447261C0DE200AA3A6F /* Wave.swift in Sources */,
 				B7607444261C0DE200AA3A6F /* Curve.swift in Sources */,
 				B74F08F6261E90AC00A58D5A /* TabbarItem.swift in Sources */,
+				B7636990261EDEA400B0111B /* ActivityViewController.swift in Sources */,
 				B7607441261C0DE200AA3A6F /* WaveData.swift in Sources */,
 				B74F08F0261E90AC00A58D5A /* TabbarView.swift in Sources */,
 				B7A694562613130E004AE108 /* LogType.swift in Sources */,

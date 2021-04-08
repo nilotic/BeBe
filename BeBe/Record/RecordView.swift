@@ -21,22 +21,28 @@ struct RecordView: View {
     // MARK: - View
     // MARK: Public
     var body: some View {
-        VStack {
-            switch data.isPickerPresented {
-            case true:
-                soundTypePicker
-                
-            case false:
-                siriWave
-                recordButton
+        NavigationView {
+            VStack {
+                switch data.isPickerPresented {
+                case true:
+                    soundTypePicker
+                    
+                case false:
+                    siriWave
+                    recordButton
+                }
             }
-        }
-        .padding(EdgeInsets(top: 80, leading: 0, bottom: 34, trailing: 0))
-        .alert(isPresented: $data.isPermissionAlertPresented) {
-            data.alert ?? Alert(title: Text(""))
-        }
-        .onChange(of: data.power) {
-            power = $0
+            .padding(EdgeInsets(top: 80, leading: 0, bottom: 34, trailing: 0))
+            .navigationBarItems(trailing: barButtonItems)
+            .alert(isPresented: $data.isPermissionAlertPresented) {
+                data.alert ?? Alert(title: Text(""))
+            }
+            .sheet(isPresented: $data.isShareViewPresented) {
+                ActivityViewController(activityItems: data.activityItems)
+            }
+            .onChange(of: data.power) {
+                power = $0
+            }
         }
     }
     
@@ -105,6 +111,15 @@ struct RecordView: View {
                     .padding(32)
                     .overlay(Circle().stroke(Color("border"), lineWidth: 8))
             }
+        }
+    }
+    
+    private var barButtonItems: some View {
+        Button(action: { data.isShareViewPresented = true }) {
+            Image(systemName: "square.and.arrow.up")
+                .resizable()
+                .frame(width: 24, height: 30)
+                .padding(EdgeInsets(top: 20, leading: 10, bottom: 0, trailing: 15))
         }
     }
 }

@@ -21,12 +21,18 @@ final class RecordData: NSObject, ObservableObject {
 
     @Published var isPermissionAlertPresented = false
     @Published var isPickerPresented = false
+    @Published var isShareViewPresented = false
     
     @Published private(set) var alert: Alert? = nil {
         didSet {
             guard alert != nil else { return}
             isPermissionAlertPresented = true
         }
+    }
+    
+    var activityItems: [Any] {
+        guard let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("record") else { return [] }
+        return [directory]
     }
     
     // MARK: Private
@@ -39,10 +45,10 @@ final class RecordData: NSObject, ObservableObject {
         }
         
         var settings: [String: Any] {
-            [AVFormatIDKey           : kAudioFormatMPEG4AAC_HE,
+            [AVFormatIDKey           : kAudioFormatMPEG4AAC,
              AVSampleRateKey         : 44100,
              AVNumberOfChannelsKey   : 1,
-             AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue]
+             AVEncoderAudioQualityKey: AVAudioQuality.max.rawValue]
         }
         
         let audioRecorder = try? AVAudioRecorder(url: url, settings: settings)
@@ -106,23 +112,34 @@ final class RecordData: NSObject, ObservableObject {
     func save() {
         isPickerPresented = false
         
-        var filePath: String {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd_HH:mm:ss"
-
-            let category = soundType.description.lowercased()
-            return "\(category)/\(category)_\(dateFormatter.string(from: Date())).m4a"
-        }
-        
         // Load a file
-        guard let recordURL = fileURL, let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(filePath) else {
+        guard let recordURL = fileURL else {
             log(.error, "Failed to get a file url.")
             return
         }
         
+        guard let documentURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            log(.error, "Failed to get the document url.")
+            return
+        }
+        
         do {
+            // Create the record directory
+            try FileManager.default.createDirectory(at: documentURL.appendingPathComponent("record"), withIntermediateDirectories: true, attributes: nil)
+            
+            // Write
+            var filePath: String {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd_HHmmss"
+
+                let category = soundType.description.lowercased()
+                return "record/\(category)_\(dateFormatter.string(from: Date())).m4a"
+            }
+         
+            let url = documentURL.appendingPathComponent(filePath)
             try FileManager.default.moveItem(at: recordURL, to: url)
          
+
         } catch {
             log(.error, error.localizedDescription)
         }
@@ -130,8 +147,6 @@ final class RecordData: NSObject, ObservableObject {
     
     // MARK: Private
     private func record() -> Bool {
-        soundType = .none
-        
         do {
             try AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .default, options: [])
             DispatchQueue.main.async { self.isRecording = true }
@@ -162,6 +177,7 @@ extension RecordData: AVAudioRecorderDelegate {
 
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         withAnimation {
+            soundType = BabySoundType.allCases.first ?? .none
             isPickerPresented = true
         }
     }
