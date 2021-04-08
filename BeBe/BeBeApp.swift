@@ -11,7 +11,7 @@ import SwiftUI
 struct BeBeApp: App {
     var body: some Scene {
         WindowGroup {
-            AnalysisView()
+            TabbarView()
         }
     }
 }

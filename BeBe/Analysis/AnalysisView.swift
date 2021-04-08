@@ -12,7 +12,9 @@ struct AnalysisView: View {
     // MARK: - Value
     // MARK: Public
     @StateObject var data = AnalysisData()
-    @State var power: CGFloat = 0
+    
+    // MARK: Private
+    @State private var power: CGFloat = 0
     
     
     // MARK: - View
@@ -40,8 +42,10 @@ struct AnalysisView: View {
                 .frame(width: 150, height: 150)
                 .cornerRadius(30)
         
-            Text(data.soundType.localizedStringKey)
-                .font(.title)
+            if data.soundType != .none {
+                Text(data.soundType.localizedStringKey)
+                    .font(.title)
+            }
         }
         .animation(.easeInOut)
     }

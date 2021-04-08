@@ -30,8 +30,6 @@ extension WaveTextModifier: AnimatableModifier {
     }
     
     func magnify(scale: CGFloat, index: CGFloat) -> CGFloat {
-        guard 0 < scale  else { return 0 }
-        
         var offset: CGFloat {
             let count = CGFloat(text.count)
             let waveWidth: CGFloat = 5

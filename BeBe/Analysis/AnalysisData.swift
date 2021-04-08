@@ -191,7 +191,6 @@ final class AnalysisData: NSObject, ObservableObject {
 extension AnalysisData: AVAudioRecorderDelegate {
 
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-        recorder.stop()
     }
 
     func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {

@@ -14,6 +14,7 @@ enum BabySoundType {
     case hungry
     case lowerGas
     case sleepy
+    case other
 }
 
 extension BabySoundType {
@@ -25,12 +26,17 @@ extension BabySoundType {
         case "Hungry":      self = .hungry
         case "LowerGas":    self = .lowerGas
         case "Sleepy":      self = .sleepy
+        case "Other":       self = .other
         default:            self = .none
         }
     }
 }
 
 extension BabySoundType {
+    
+    static var allCases: [BabySoundType] {
+        [.burp, .discomfort, .hungry, .lowerGas, .sleepy, .other]
+    }
     
     var localizedStringKey: LocalizedStringKey {
         switch self {
@@ -40,6 +46,7 @@ extension BabySoundType {
         case .hungry:       return LocalizedStringKey("Hungry")
         case .lowerGas:     return LocalizedStringKey("LowerGas")
         case .sleepy:       return LocalizedStringKey("Sleepy")
+        case .other:        return LocalizedStringKey("Other")
         }
     }
     
@@ -51,6 +58,41 @@ extension BabySoundType {
         case .hungry:       return #imageLiteral(resourceName: "hungry")
         case .lowerGas:     return #imageLiteral(resourceName: "lowerGas")
         case .sleepy:       return #imageLiteral(resourceName: "sleepy")
+        case .other:        return UIImage()
+        }
+    }
+    
+    var description: String {
+        switch self {
+        case .none:         return ""
+        case .burp:         return "Burp"
+        case .discomfort:   return "Discomfort"
+        case .hungry:       return "Hungry"
+        case .lowerGas:     return "LowerGas"
+        case .sleepy:       return "Sleepy"
+        case .other:        return "Other"
         }
     }
 }
+
+extension BabySoundType: Identifiable {
+    
+    var id: String {
+        description
+    }
+}
+
+extension BabySoundType: Hashable {
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
+extension BabySoundType: Equatable {
+    
+    static func ==(lhs: BabySoundType, rhs: BabySoundType) -> Bool {
+        lhs.id == rhs.id
+    }
+}
+
