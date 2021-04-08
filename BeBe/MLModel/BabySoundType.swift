@@ -65,11 +65,11 @@ extension BabySoundType {
     var description: String {
         switch self {
         case .none:         return ""
-        case .burp:         return "Burp"
-        case .discomfort:   return "Discomfort"
-        case .hungry:       return "Hungry"
-        case .lowerGas:     return "LowerGas"
-        case .sleepy:       return "Sleepy"
+        case .burp:         return "Burp ( Eh )"
+        case .discomfort:   return "Discomfort ( Heh )"
+        case .hungry:       return "Hungry ( Neh )"
+        case .lowerGas:     return "LowerGas ( Eair )"
+        case .sleepy:       return "Sleepy ( Owh )"
         case .other:        return "Other"
         }
     }

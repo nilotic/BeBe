@@ -155,10 +155,7 @@ final class RecordData: NSObject, ObservableObject {
             timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { timer in
                 self.audioRecorder?.updateMeters()
                 
-                var power = (CGFloat(self.audioRecorder?.peakPower(forChannel: 0) ?? 0) + 80) / 160
-                power = max(power, 0)
-                power = 0 < power ? power : power
-                
+                let power = max((CGFloat(self.audioRecorder?.peakPower(forChannel: 0) ?? 0) + 80) / 160, 0)
                 self.power = self.power != 0 ? 0 : power
             }
             

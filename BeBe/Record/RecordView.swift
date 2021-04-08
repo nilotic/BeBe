@@ -74,6 +74,7 @@ struct RecordView: View {
             }
             .border(Color.gray, width: 1)
         }
+        .padding(.bottom, 100)
     }
     
     private var siriWave: some View {
