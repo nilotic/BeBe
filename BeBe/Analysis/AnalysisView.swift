@@ -90,6 +90,7 @@ struct AnalysisView: View {
                     .cornerRadius(66)
             }
         }
+        .buttonStyle(ButtonStyle1())
     }
 }
 
