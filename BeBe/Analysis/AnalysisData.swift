@@ -211,7 +211,6 @@ extension AnalysisData: SNResultsObserving {
         
         log(.info, "\(classification.identifier): \(String(format: "%.2f%%", classification.confidence * 100)).\n")
         
-        
         analysisQueue.async {
             let type  = BabySoundType(string: classification.identifier)
             let score = self.analysisScores[type] ?? 0

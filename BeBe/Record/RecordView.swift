@@ -15,7 +15,6 @@ struct RecordView: View {
     
     // MARK: Private
     @State private var power: CGFloat = 0
-    @State private var soundType: BabySoundType = .none
     
     
     // MARK: - View
