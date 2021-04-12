@@ -56,6 +56,8 @@
 		B7CA67BC2610489200F86C5B /* BabySoundClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B7CA67BB2610489200F86C5B /* BabySoundClassifier.mlmodel */; };
 		B7CA67BD2610489200F86C5B /* BabySoundClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B7CA67BB2610489200F86C5B /* BabySoundClassifier.mlmodel */; };
 		B7CA67BE2610489200F86C5B /* BabySoundClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B7CA67BB2610489200F86C5B /* BabySoundClassifier.mlmodel */; };
+		B7DE97D52624480E0032ED65 /* FramePreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DE97D42624480E0032ED65 /* FramePreferenceKey.swift */; };
+		B7DE97D72624480E0032ED65 /* FramePreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DE97D42624480E0032ED65 /* FramePreferenceKey.swift */; };
 		B7F1A047261021D400845D4E /* BeBeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F1A046261021D400845D4E /* BeBeApp.swift */; };
 		B7F1A049261021D400845D4E /* AnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F1A048261021D400845D4E /* AnalysisView.swift */; };
 		B7F1A04B261021D400845D4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7F1A04A261021D400845D4E /* Assets.xcassets */; };
@@ -103,6 +105,7 @@
 		B7A6944F2613130E004AE108 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		B7A694502613130E004AE108 /* LogType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogType.swift; sourceTree = "<group>"; };
 		B7CA67BB2610489200F86C5B /* BabySoundClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = BabySoundClassifier.mlmodel; path = MachineLearning/BabySoundClassifier.mlmodel; sourceTree = SOURCE_ROOT; };
+		B7DE97D42624480E0032ED65 /* FramePreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FramePreferenceKey.swift; sourceTree = "<group>"; };
 		B7F1A043261021D400845D4E /* BeBe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeBe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7F1A046261021D400845D4E /* BeBeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeBeApp.swift; sourceTree = "<group>"; };
 		B7F1A048261021D400845D4E /* AnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisView.swift; sourceTree = "<group>"; };
@@ -252,6 +255,7 @@
 		B7A6944D261312F7004AE108 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				B7DE97D3262447F30032ED65 /* PreferenceKey */,
 				B7A6944E2613130E004AE108 /* Logger */,
 			);
 			path = Util;
@@ -282,6 +286,14 @@
 				B74990A6261C698000F1D598 /* BabySoundType.swift */,
 			);
 			path = MLModel;
+			sourceTree = "<group>";
+		};
+		B7DE97D3262447F30032ED65 /* PreferenceKey */ = {
+			isa = PBXGroup;
+			children = (
+				B7DE97D42624480E0032ED65 /* FramePreferenceKey.swift */,
+			);
+			path = PreferenceKey;
 			sourceTree = "<group>";
 		};
 		B7F1A03A261021D400845D4E = {
@@ -479,6 +491,7 @@
 			files = (
 				B74B853D2610492400C196A0 /* AnalysisData.swift in Sources */,
 				B7607448261C0DE200AA3A6F /* WaveView.swift in Sources */,
+				B7DE97D52624480E0032ED65 /* FramePreferenceKey.swift in Sources */,
 				B74F08F4261E90AC00A58D5A /* TabbarItem.swift in Sources */,
 				B763698F261EDEA400B0111B /* ActivityViewController.swift in Sources */,
 				B7F1A049261021D400845D4E /* AnalysisView.swift in Sources */,
@@ -526,6 +539,7 @@
 			files = (
 				B7607447261C0DE200AA3A6F /* Wave.swift in Sources */,
 				B7607444261C0DE200AA3A6F /* Curve.swift in Sources */,
+				B7DE97D72624480E0032ED65 /* FramePreferenceKey.swift in Sources */,
 				B74F08F6261E90AC00A58D5A /* TabbarItem.swift in Sources */,
 				B7636990261EDEA400B0111B /* ActivityViewController.swift in Sources */,
 				B7607441261C0DE200AA3A6F /* WaveData.swift in Sources */,

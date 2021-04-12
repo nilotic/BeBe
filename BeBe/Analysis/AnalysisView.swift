@@ -15,7 +15,7 @@ struct AnalysisView: View {
     
     // MARK: Private
     @State private var power: CGFloat = 0
-    
+    private let style1 = ButtonStyle1()
     
     // MARK: - View
     // MARK: Public
@@ -90,7 +90,7 @@ struct AnalysisView: View {
                     .cornerRadius(66)
             }
         }
-        .buttonStyle(ButtonStyle1())
+        .buttonStyle(style1)
     }
 }
 
