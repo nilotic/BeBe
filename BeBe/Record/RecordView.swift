@@ -112,6 +112,7 @@ struct RecordView: View {
                     .overlay(Circle().stroke(Color("border"), lineWidth: 8))
             }
         }
+        .buttonStyle(ButtonStyle1())
     }
     
     private var barButtonItems: some View {

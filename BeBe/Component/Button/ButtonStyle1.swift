@@ -11,7 +11,8 @@ struct ButtonStyle1: ButtonStyle {
     
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
+            .opacity(configuration.isPressed ? 0.5 : 1)
             .scaleEffect(configuration.isPressed ? 0.92 : 1)
-            .animation(.easeInOut(duration: 0.14))
+            .animation(.easeInOut(duration: 0.18))
     }
 }
