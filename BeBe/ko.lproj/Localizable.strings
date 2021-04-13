@@ -1,0 +1,47 @@
+/* 
+  Localizable.strings
+ 
+  Created by Den Jo on 2021/04/13.
+  Copyright © nilotic. All rights reserved.
+*/
+
+// MARK: - Button
+"ok" = "확인";
+"cancel" = "취소";
+"settings" = "설정";
+"done" = "완료";
+
+
+// MARK: - Alert
+"error" = "오류";
+"alert_microphone_permission_message" = "Turn on microphone to allow the app to analyze a voice.";
+
+
+// MARK: - Tabbar
+"tabbar_analysis" = "분석";
+"tabbar_record" = "녹음";
+
+
+// MARK: - Analysis View
+"analysis_view_analyzing" = "분석중...";
+"analysis_view_analysis_error_meesage" = "목소리를 분석하는데 실패하였습니다.";
+
+
+// MARK: - Record View
+"record_view_recording" = "녹음중...";
+"record_view_record_error_meesage" = "목소리를 녹음하는데 실패하였습니다.";
+
+
+// MARK: - Sound Type
+"sound_type_burp" = "트림";
+"sound_type_discomfort" = "불편함";
+"sound_type_hungry" = "배고픔";
+"sound_type_lower_gas" = "배변";
+"sound_type_sleepy" = "졸림";
+"sound_type_other" = "기타";
+"sound_type_burp_description" = "트림 ( 에 )";
+"sound_type_discomfort_description" = "불편함 ( 해 )";
+"sound_type_hungry_description" = "배고픔 ( 네-에 )";
+"sound_type_lower_gas_description" = "배변 ( 읏-어 )";
+"sound_type_sleepy_description" = "졸림 ( 오-우 )";
+"sound_type_other_description" = "기타";

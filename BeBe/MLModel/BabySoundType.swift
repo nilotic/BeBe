@@ -41,12 +41,12 @@ extension BabySoundType {
     var localizedStringKey: LocalizedStringKey {
         switch self {
         case .none:         return LocalizedStringKey("")
-        case .burp:         return LocalizedStringKey("Burp")
-        case .discomfort:   return LocalizedStringKey("Discomfort")
-        case .hungry:       return LocalizedStringKey("Hungry")
-        case .lowerGas:     return LocalizedStringKey("LowerGas")
-        case .sleepy:       return LocalizedStringKey("Sleepy")
-        case .other:        return LocalizedStringKey("Other")
+        case .burp:         return LocalizedStringKey("sound_type_burp")
+        case .discomfort:   return LocalizedStringKey("sound_type_discomfort")
+        case .hungry:       return LocalizedStringKey("sound_type_hungry")
+        case .lowerGas:     return LocalizedStringKey("sound_type_lower_gas")
+        case .sleepy:       return LocalizedStringKey("sound_type_sleepy")
+        case .other:        return LocalizedStringKey("sound_type_other")
         }
     }
     
@@ -65,12 +65,12 @@ extension BabySoundType {
     var description: String {
         switch self {
         case .none:         return ""
-        case .burp:         return "Burp ( Eh )"
-        case .discomfort:   return "Discomfort ( Heh )"
-        case .hungry:       return "Hungry ( Neh )"
-        case .lowerGas:     return "LowerGas ( Eair )"
-        case .sleepy:       return "Sleepy ( Owh )"
-        case .other:        return "Other"
+        case .burp:         return NSLocalizedString("sound_type_burp_description", comment: "")
+        case .discomfort:   return NSLocalizedString("sound_type_discomfort_description", comment: "")
+        case .hungry:       return NSLocalizedString("sound_type_hungry_description", comment: "")
+        case .lowerGas:     return NSLocalizedString("sound_type_lower_gas_description", comment: "")
+        case .sleepy:       return NSLocalizedString("sound_type_sleepy_description", comment: "")
+        case .other:        return NSLocalizedString("sound_type_other_description", comment: "")
         }
     }
 }

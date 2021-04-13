@@ -47,6 +47,9 @@
 		B760744D261C0DE200AA3A6F /* WaveShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = B760743E261C0DE200AA3A6F /* WaveShape.swift */; };
 		B763698F261EDEA400B0111B /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B763698E261EDEA400B0111B /* ActivityViewController.swift */; };
 		B7636990261EDEA400B0111B /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B763698E261EDEA400B0111B /* ActivityViewController.swift */; };
+		B7864FA1262516F300D9D9FB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7864FA5262516F300D9D9FB /* Localizable.strings */; };
+		B7864FA2262516F300D9D9FB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7864FA5262516F300D9D9FB /* Localizable.strings */; };
+		B7864FA3262516F300D9D9FB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7864FA5262516F300D9D9FB /* Localizable.strings */; };
 		B7A694512613130E004AE108 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A6944F2613130E004AE108 /* Logger.swift */; };
 		B7A694522613130E004AE108 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A6944F2613130E004AE108 /* Logger.swift */; };
 		B7A694532613130E004AE108 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A6944F2613130E004AE108 /* Logger.swift */; };
@@ -104,6 +107,8 @@
 		B760743C261C0DE200AA3A6F /* WaveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveView.swift; sourceTree = "<group>"; };
 		B760743E261C0DE200AA3A6F /* WaveShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveShape.swift; sourceTree = "<group>"; };
 		B763698E261EDEA400B0111B /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		B7864FA4262516F300D9D9FB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B7864FA9262516F600D9D9FB /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B7A6944F2613130E004AE108 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		B7A694502613130E004AE108 /* LogType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogType.swift; sourceTree = "<group>"; };
 		B7CA67BB2610489200F86C5B /* BabySoundClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = BabySoundClassifier.mlmodel; path = MachineLearning/BabySoundClassifier.mlmodel; sourceTree = SOURCE_ROOT; };
@@ -332,6 +337,7 @@
 				B7835F5C2612B58E00760062 /* Component */,
 				B7A6944D261312F7004AE108 /* Util */,
 				B7F1A04A261021D400845D4E /* Assets.xcassets */,
+				B7864FA5262516F300D9D9FB /* Localizable.strings */,
 				B7F1A04F261021D400845D4E /* Info.plist */,
 				B7F1A04C261021D400845D4E /* Preview Content */,
 			);
@@ -449,6 +455,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = B7F1A03A261021D400845D4E;
 			productRefGroup = B7F1A044261021D400845D4E /* Products */;
@@ -468,6 +475,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7F1A04E261021D400845D4E /* Preview Assets.xcassets in Resources */,
+				B7864FA1262516F300D9D9FB /* Localizable.strings in Resources */,
 				B7F1A04B261021D400845D4E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,6 +484,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7864FA2262516F300D9D9FB /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,6 +492,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7864FA3262516F300D9D9FB /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,6 +592,18 @@
 			targetProxy = B7F1A060261021D400845D4E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B7864FA5262516F300D9D9FB /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B7864FA4262516F300D9D9FB /* en */,
+				B7864FA9262516F600D9D9FB /* ko */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B7F1A066261021D400845D4E /* Debug */ = {
@@ -706,6 +728,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_ASSET_PATHS = "\"BeBe/Preview Content\"";
 				DEVELOPMENT_TEAM = C75HZNC664;
 				ENABLE_PREVIEWS = YES;
@@ -715,6 +738,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nilotic.BeBe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -728,6 +752,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_ASSET_PATHS = "\"BeBe/Preview Content\"";
 				DEVELOPMENT_TEAM = C75HZNC664;
 				ENABLE_PREVIEWS = YES;
@@ -737,6 +762,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nilotic.BeBe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

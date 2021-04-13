@@ -56,7 +56,7 @@ struct AnalysisView: View {
                 .frame(height: 150)
             
             if data.isAnalyzing {
-                WaveText(text: "Anayzing...")
+                WaveText(text: NSLocalizedString("analysis_view_analyzing", comment: ""))
             }
         }
         .frame(maxHeight: .infinity)

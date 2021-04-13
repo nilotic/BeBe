@@ -51,13 +51,13 @@ struct RecordView: View {
             // Done button
             HStack {
                 Button(action:{ data.isPickerPresented = false }) {
-                    Text("Cancel")
+                    Text(LocalizedStringKey("cancel"))
                 }
                 
                 Spacer()
                 
                 Button(action:{ data.save() }) {
-                    Text("Done")
+                    Text(LocalizedStringKey("done"))
                         .bold()
                 }
             }
@@ -65,7 +65,7 @@ struct RecordView: View {
 
             
             // Picker
-            Picker("Please choose a sound type", selection: $data.soundType) {
+            Picker("", selection: $data.soundType) {
                 ForEach(BabySoundType.allCases) {
                     Text($0.description)
                         .tag($0)
@@ -82,7 +82,7 @@ struct RecordView: View {
                 .frame(height: 150)
             
             if data.isRecording {
-                WaveText(text: "Recording...")
+                WaveText(text: NSLocalizedString("record_view_recording", comment: ""))
             }
         }
         .frame(maxHeight: .infinity)

@@ -1,0 +1,47 @@
+/* 
+  Localizable.strings
+
+  Created by Den Jo on 2021/04/13.
+  Copyright © nilotic. All rights reserved.
+*/
+
+// MARK: - Button
+"ok" = "OK";
+"cancel" = "Cancel";
+"settings" = "Settings";
+"done" = "Done";
+
+
+// MARK: - Alert
+"error" = "Error";
+"alert_microphone_permission_message" = "Turn on microphone to allow the app to analyze a voice.";
+
+
+// MARK: - Tabbar
+"tabbar_analysis" = "Analysis";
+"tabbar_record" = "Record";
+
+
+// MARK: - Analysis View
+"analysis_view_analyzing" = "Analyzing...";
+"analysis_view_analysis_error_meesage" = "Failed to analyze a voice.";
+
+
+// MARK: - Record View
+"record_view_recording" = "Analyzing...";
+"record_view_record_error_meesage" = "Failed to record a voice.";
+
+
+// MARK: - Sound Type
+"sound_type_burp" = "Burp";
+"sound_type_discomfort" = "Discomfort";
+"sound_type_hungry" = "Hungry";
+"sound_type_lower_gas" = "Lower Gas";
+"sound_type_sleepy" = "Sleepy";
+"sound_type_other" = "Other";
+"sound_type_burp_description" = "Burp ( Eh )";
+"sound_type_discomfort_description" = "Discomfort ( Heh )";
+"sound_type_hungry_description" = "Hungry ( Neh )";
+"sound_type_lower_gas_description" = "LowerGas ( Eair )";
+"sound_type_sleepy_description" = "Sleepy ( Owh )";
+"sound_type_other_description" = "Other";

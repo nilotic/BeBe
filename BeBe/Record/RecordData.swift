@@ -69,32 +69,32 @@ final class RecordData: NSObject, ObservableObject {
         switch AVAudioSession.sharedInstance().recordPermission {
         case .granted:
             guard record() else {
-                alert = Alert(title: Text("Error"), message: Text("Failed to analyze a voice."), dismissButton: .default(Text("OK")))
+                alert = Alert(title: Text("error"), message: Text("record_view_record_error_meesage"), dismissButton: .default(Text("ok")))
                 return
             }
             
         case .undetermined:
             AVCaptureDevice.requestAccess(for: .audio) { isGranted in
                 guard isGranted else {
-                    self.alert = Alert(title: Text("Error"), message: Text("Failed to analyze a voice."), dismissButton: .default(Text("OK")))
+                    self.alert = Alert(title: Text("error"), message: Text("record_view_record_error_meesage"), dismissButton: .default(Text("ok")))
                     return
                 }
                 
                 guard self.record() else {
-                    self.alert = Alert(title: Text("Error"), message: Text("Failed to analyze a voice."), dismissButton: .default(Text("OK")))
+                    self.alert = Alert(title: Text("error"), message: Text("record_view_record_error_meesage"), dismissButton: .default(Text("ok")))
                     return
                 }
             }
             
         case .denied:
             var primaryButton: Alert.Button {
-                Alert.Button.default(Text("Settings")) {
+                Alert.Button.default(Text("settings")) {
                     guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
                     UIApplication.shared.open(url)
                 }
             }
             
-            alert = Alert(title: Text("Error"), message: Text("Turn on microphone to allow the app to analyze a voice."), primaryButton: primaryButton, secondaryButton: .cancel())
+            alert = Alert(title: Text("error"), message: Text("alert_microphone_permission_message"), primaryButton: primaryButton, secondaryButton: .cancel())
             
         default:
             break

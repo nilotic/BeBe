@@ -17,8 +17,8 @@ extension TabbarType {
     
     var title: LocalizedStringKey {
         switch self {
-        case .analysis:    return LocalizedStringKey("Analysis")
-        case .record:      return LocalizedStringKey("Record")
+        case .analysis:    return LocalizedStringKey("tabbar_analysis")
+        case .record:      return LocalizedStringKey("tabbar_record")
         }
     }
     
