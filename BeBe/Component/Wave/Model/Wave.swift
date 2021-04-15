@@ -1,71 +1,53 @@
 // 
 //  Wave.swift
 //
-//  Created by Den Jo on 2021/04/05.
+//  Created by Den Jo on 2021/04/13.
 //  Copyright © nilotic. All rights reserved.
 //
 
 import SwiftUI
 
 struct Wave {
-    var power: CGFloat
-    var curves: [Curve]
+    let index: UInt
+    let count: UInt
+    let primaryLineWidth: CGFloat
+    let amplitude: CGFloat
+    let frequency: CGFloat
+    let density: CGFloat
+    var time: CGFloat
 }
 
-extension Wave {
+extension Wave: Animatable {
     
-    init(power: CGFloat) {
-        self.power = power
-        curves = (0..<4).map { _ in Curve() }
+    var animatableData: CGFloat {
+        get { time }
+        set { time = newValue }
     }
 }
 
 extension Wave: Identifiable {
     
-    var id: String {
-        "\(power)\(curves.reduce("") { $0 + $1.id })"
+    var id: UInt {
+        index
+    }
+    
+    var lineWidth: CGFloat {
+        index == 0 ? primaryLineWidth : secondaryLineWidth
+    }
+    
+    var secondaryLineWidth: CGFloat {
+        primaryLineWidth / 3
+    }
+    
+    var progress: CGFloat {
+        1 - CGFloat(index) / CGFloat(count)
+    }
+    
+    var normedAmplitude: CGFloat {
+        (1.5 * progress - 0.8) * amplitude
+    }
+    
+    var opacity: Double {
+        return index == 0 ? 1 : min(1, ((1 - Double(index) / Double(count)) / 6) + 1 / 3)
     }
 }
-
-extension Wave: Animatable {
-    
-    typealias AnimatableData = AnimatablePair<
-        AnimatablePair<Curve.AnimatableData, Curve.AnimatableData>,
-        AnimatablePair<Curve.AnimatableData, AnimatablePair<Curve.AnimatableData, CGFloat>>
-    >
-    
-    var animatableData: AnimatableData {
-        get {
-            AnimatablePair(
-                AnimatablePair(curves[0].animatableData, curves[1].animatableData),
-                AnimatablePair(curves[2].animatableData, AnimatablePair(curves[3].animatableData, power))
-            )
-        }
-        
-        set {
-            let curve1 = newValue.first.first
-            curves[0].amplitude = curve1.first.first
-            curves[0].frequency = curve1.first.second
-            curves[0].time      = curve1.second
-            
-            let curve2 = newValue.first.second
-            curves[1].amplitude = curve2.first.first
-            curves[1].frequency = curve2.first.second
-            curves[1].time      = curve2.second
-            
-            let curve3 = newValue.second.first
-            curves[2].amplitude = curve3.first.first
-            curves[2].frequency = curve3.first.second
-            curves[2].time      = curve3.second
-            
-            let curve4 = newValue.second.second.first
-            curves[3].amplitude = curve4.first.first
-            curves[3].frequency = curve4.first.second
-            curves[3].time      = curve4.second
-            
-            power = newValue.second.second.second
-        }
-    }
-}
-
-

@@ -152,11 +152,11 @@ final class RecordData: NSObject, ObservableObject {
             DispatchQueue.main.async { self.isRecording = true }
             
             audioRecorder?.record()
-            timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { timer in
+            timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) { timer in
                 self.audioRecorder?.updateMeters()
                 
-                let power = max((CGFloat(self.audioRecorder?.peakPower(forChannel: 0) ?? 0) + 80) / 160, 0)
-                self.power = self.power != 0 ? 0 : power
+                let power = min(1, CGFloat(100 + (self.audioRecorder?.peakPower(forChannel: 0) ?? 0)) / 160)
+                self.power = 0.35 < power ? power : 0
             }
             
             return true

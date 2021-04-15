@@ -52,7 +52,7 @@ struct AnalysisView: View {
     
     private var siriWave: some View {
         VStack(spacing: 0) {
-            WaveView(data: $power)
+            SiriWaveView(data: $power)
                 .frame(height: 150)
             
             if data.isAnalyzing {

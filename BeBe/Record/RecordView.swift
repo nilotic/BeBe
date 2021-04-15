@@ -13,9 +13,6 @@ struct RecordView: View {
     // MARK: Public
     @StateObject var data = RecordData()
     
-    // MARK: Private
-    @State private var power: CGFloat = 0
-    
     
     // MARK: - View
     // MARK: Public
@@ -39,13 +36,12 @@ struct RecordView: View {
             .sheet(isPresented: $data.isShareViewPresented) {
                 ActivityViewController(activityItems: data.activityItems)
             }
-            .onChange(of: data.power) {
-                power = $0
-            }
         }
     }
     
     // MARK: Private
+    private let waveView = WaveView()
+    
     private var soundTypePicker: some View {
         VStack(spacing: 20) {
             // Done button
@@ -78,8 +74,11 @@ struct RecordView: View {
     
     private var siriWave: some View {
         VStack(spacing: 0) {
-            WaveView(data: $power)
+            waveView
                 .frame(height: 150)
+                .opacity(data.isRecording ? 1 : 0)
+                .animation(.easeInOut)
+                .environmentObject(data)
             
             if data.isRecording {
                 WaveText(text: NSLocalizedString("record_view_recording", comment: ""))

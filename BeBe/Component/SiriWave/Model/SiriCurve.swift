@@ -1,5 +1,5 @@
 // 
-//  Curve.swift
+//  SiriCurve.swift
 //
 //  Created by Den Jo on 2021/04/05.
 //  Copyright © nilotic. All rights reserved.
@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct Curve {
+struct SiriCurve {
     var amplitude: CGFloat
     var frequency: CGFloat
     var time: CGFloat
 }
 
-extension Curve {
+extension SiriCurve {
     
     init() {
         amplitude = CGFloat.random(in: 0.1...1.0)
@@ -22,18 +22,18 @@ extension Curve {
     }
 }
 
-extension Curve: Identifiable {
+extension SiriCurve: Identifiable {
     
     var id: String {
         "\(amplitude)\(frequency)\(time)"
     }
 }
 
-extension Curve: Animatable {
+extension SiriCurve: Animatable {
     
     typealias AnimatableData = AnimatablePair<AnimatablePair<CGFloat, CGFloat>, CGFloat>
     
-    var animatableData: Curve.AnimatableData {
+    var animatableData: SiriCurve.AnimatableData {
         get { AnimatablePair(AnimatablePair(amplitude, frequency), time) }
         
         set {

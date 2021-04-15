@@ -1,7 +1,7 @@
 // 
 //  WaveShape.swift
 //
-//  Created by Den Jo on 2021/04/05.
+//  Created by Den Jo on 2021/04/13.
 //  Copyright © nilotic. All rights reserved.
 //
 
@@ -11,11 +11,11 @@ struct WaveShape: Shape {
     
     // MARK: - Value
     // MARK: Public
-    var wave: Wave
+    var data: Wave
     
     var animatableData: Wave.AnimatableData {
-        get { wave.animatableData }
-        set { wave.animatableData = newValue }
+        get { data.animatableData }
+        set { data.animatableData = newValue }
     }
     
     
@@ -23,45 +23,20 @@ struct WaveShape: Shape {
     // MARK: Public
     func path(in rect: CGRect) -> Path {
         var path = Path()
-        path.move(to: CGPoint(x: 0, y: rect.midY))
-        path.addLines(calculate(frame: rect))
-        
-        return path
-    }
-    
-    // MARK: Private
-    private func calculate(frame: CGRect) -> [CGPoint] {
-        let xPoints = Array(stride(from: -frame.midX, to: frame.midX, by: 1))
-        var coordinates = [[CGFloat]](repeating: [0, 0], count: xPoints.count)
-        
-        for i in 0..<Int.random(in: 2...wave.curves.count) {
-            let amplitude = wave.curves[i].amplitude * frame.midY * wave.power
+       
+        let middle = rect.width / 2
+        let maxAmplitude = rect.height / 2 - data.lineWidth
+       
+        for x in stride(from: 0, to: rect.width + data.density, by: data.density) {
+            let scaling = -pow(1 / middle * (x - middle), 2) + 1
+            let y = scaling * maxAmplitude * data.normedAmplitude * sin(2 * .pi * data.frequency * (x / rect.width) + data.time) + rect.height / 2
             
-            for (j, graphX) in xPoints.enumerated() {
-                let x = graphX / (frame.midX / 9)
-                let y = attenuate(x: x, amplitude: amplitude, frequency: wave.curves[i].frequency, time: wave.curves[i].time) + frame.midY
-                
-                coordinates[j] = [frame.midX + graphX, max(coordinates[j][1], y)]
+            switch x {
+            case 0:     path.move(to: CGPoint(x: x, y: y))
+            default:    path.addLine(to: CGPoint(x: x, y: y))
             }
         }
         
-        // Create inverse points
-        coordinates += coordinates.map { [$0[0], frame.midY - ($0[1] - frame.midY)] }
-                
-        var points = [CGPoint]()
-        for coordinate in coordinates {
-            points.append(CGPoint(x: coordinate[0], y: coordinate[1]))
-        }
-        
-        return points
-    }
-
-    private func attenuate(x: CGFloat, amplitude: CGFloat, frequency: CGFloat, time: CGFloat) -> CGFloat {
-        let sine = amplitude * sin((frequency * x) - time)
-        
-        let K: CGFloat = 4 //  for the “attenuation equation”
-        let globalAmplitude = pow(K / (K + pow((frequency * x) - (time - (CGFloat.pi / 2)), 2)), K)
-        
-        return abs(sine * globalAmplitude)
+        return path
     }
 }
