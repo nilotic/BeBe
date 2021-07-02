@@ -11,7 +11,7 @@ struct ButtonStyle1: ButtonStyle {
     
     // MARK: - Value
     // MARK: Private
-    @ObservedObject private var data = ButtonStyle1Data()
+    @State private var isAppeared = false
     
     
     // MARK: - Function
@@ -25,15 +25,15 @@ struct ButtonStyle1: ButtonStyle {
             }
             .frame(width: 0, height: 0)
             .onPreferenceChange(FramePreferenceKey.self) { frame in
-                guard !data.isAppeared else { return }
-                data.isAppeared = 0 <= frame.origin.x
+                guard !isAppeared else { return }
+                isAppeared = 0 <= frame.origin.x
             }
             
             // Content View
             configuration.label
                 .opacity(configuration.isPressed ? 0.5 : 1)
                 .scaleEffect(configuration.isPressed ? 0.92 : 1)
-                .animation(data.isAppeared ? .easeInOut(duration: 0.18) : nil)
+                .animation(isAppeared ? .easeInOut(duration: 0.18) : nil)
         }
     }
 }
