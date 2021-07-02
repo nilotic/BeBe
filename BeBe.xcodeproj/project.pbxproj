@@ -417,7 +417,9 @@
 			buildPhases = (
 				B7F1A03F261021D400845D4E /* Sources */,
 				B7F1A040261021D400845D4E /* Frameworks */,
+				B7EE0F6C268E9C80009F9531 /* Generate Icon */,
 				B7F1A041261021D400845D4E /* Resources */,
+				B7EE0F6E268ECA2C009F9531 /* Restore Icon */,
 			);
 			buildRules = (
 			);
@@ -535,6 +537,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B7EE0F6C268E9C80009F9531 /* Generate Icon */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Icon";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\n\n#\n# Access AppIcon\n#\nIFS=$'\\n'\nBASE_ICONS_DIR=$(find ${SRCROOT}/${PRODUCT_NAME} -name \"AppIcon.appiconset\")\nIFS=$' '\nCONTENTS_JSON=\"${BASE_ICONS_DIR}/Contents.json\"\n\ncaption=\"V$MARKETING_VERSION ($CURRENT_PROJECT_VERSION)\"\necho $caption\n\n#\n# Generate icons\n#\nfunction generateIcons() {\nICON_PATH=$1\n\nwidth=`identify -format %w ${ICON_PATH}`\n[ $? -eq 0 ] || exit 1\n\nheight=$((width * 30 / 100))\n\nif [ \"${CONFIGURATION}\" == \"Debug\" ]; then\n\nwidth=`identify -format %w ${ICON_PATH}`\nheight=`identify -format %h ${ICON_PATH}`\nband_height=$(($height / 2))\nband_position=$(($height - $band_height))\ntext_position=$(($band_position - 25))\npoint_size=$((17 * $width / 100))\n\n#\n# Band color\n#\nband_color='rgba(0,0,0,0.3)'\n\n\n#\n# Blur band and text\n#\nconvert ${ICON_PATH} -blur 10x8 /tmp/blurred.png\nconvert /tmp/blurred.png -gamma 0 -fill white -draw \"rectangle 0,$band_position,$width,$height\" /tmp/mask.png\nconvert -size ${width}x${band_height} xc:none -fill $band_color -draw \"rectangle 0,0,$width,$band_height\" /tmp/labels-base.png\nconvert -background none -size ${width}x${band_height} -pointsize $point_size -fill white -gravity center -gravity South -font ArialNarrowB caption:\"$caption\" /tmp/labels.png\n\nconvert ${ICON_PATH} /tmp/blurred.png /tmp/mask.png -composite /tmp/temp.png\n\nrm /tmp/blurred.png\nrm /tmp/mask.png\n\n#\n# Compose final image\n#\nconvert /tmp/temp.png /tmp/labels-base.png -geometry +0+$band_position -composite /tmp/labels.png -geometry +0+$text_position -geometry +${w}-${h} -composite \"${ICON_PATH}\"\n\n#\n# Clean up\n#\nrm /tmp/temp.png\nrm /tmp/labels-base.png\nrm /tmp/labels.png\nfi\n}\n\nICONS=(`grep 'filename' \"${CONTENTS_JSON}\" | cut -f2 -d: | tr -d ',' | tr -d '\\n' | tr -d '\"'`)\n\nICONS_COUNT=${#ICONS[*]}\n\nIFS=$'\\n'\n\nfor (( i=0; i<ICONS_COUNT; i++ )); do\ngenerateIcons \"$BASE_ICONS_DIR/${ICONS[$i]}\"\ndone\n";
+		};
+		B7EE0F6E268ECA2C009F9531 /* Restore Icon */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Restore Icon";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" == \"Debug\" ]; then\nIFS=$'\\n'\ngit checkout -- `find \"${SRCROOT}/${PRODUCT_NAME}\" -name AppIcon.appiconset -type d`\nfi\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B7F1A03F261021D400845D4E /* Sources */ = {
@@ -774,7 +815,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BeBe/Preview Content\"";
 				DEVELOPMENT_TEAM = C75HZNC664;
 				ENABLE_PREVIEWS = YES;
@@ -798,7 +839,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BeBe/Preview Content\"";
 				DEVELOPMENT_TEAM = C75HZNC664;
 				ENABLE_PREVIEWS = YES;
